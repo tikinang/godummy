@@ -1,0 +1,24 @@
+zerops:
+  - setup: app
+    build:
+      os: alpine
+      base: go@1
+#      cache:
+#        - gomodcache
+#      envVariables:
+#        GOMODCACHE: /build/source/gomodcache
+      buildCommands:
+        - ls -la
+        - date >> cache-file.txt
+        - cat cache-file.txt
+        - go build -o app main.go
+        - ls -la
+      deployFiles:
+        - app
+    run:
+      os: alpine
+      base: alpine@latest
+      ports:
+        - port: 8080
+          httpSupport: true
+      start: ./app
