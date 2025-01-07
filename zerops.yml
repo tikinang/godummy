@@ -5,9 +5,9 @@ zerops:
     build:
       os: alpine
       base: go@1
-#      prepareCommands:
-#        - sudo apk update
-#        - sudo apk add jq vim
+      prepareCommands:
+        - sudo apk update
+        - sudo apk add jq vim
       buildCommands:
         - ls -la
         - date >> cache-file.txt
