@@ -6,3 +6,4 @@ services:
     minContainers: 1
     maxContainers: 1
     buildFromGit: https://github.com/tikinang/godummy
+    enableSubdomainAccess: true

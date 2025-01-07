@@ -3,3 +3,5 @@ services:
     type: alpine@3.20
     minContainers: 1
     maxContainers: 1
+    buildFromGit: https://github.com/tikinang/godummy
+    enableSubdomainAccess: true

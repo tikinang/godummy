@@ -30,6 +30,6 @@ zerops:
 #        - sudo apk update
 #        - sudo apk add jq vim sqlite
 #        - jq . test.json
-      initCommands:
-        - jq . test.json
+#      initCommands:
+#        - jq . test.json
       start: ./app
