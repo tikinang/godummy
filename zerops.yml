@@ -1,4 +1,6 @@
 zerops:
+  - setup: app2
+    extends: app
   - setup: app
     build:
       os: alpine
