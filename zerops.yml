@@ -3,22 +3,33 @@ zerops:
     build:
       os: alpine
       base: go@1
-#      cache:
-#        - gomodcache
-#      envVariables:
-#        GOMODCACHE: /build/source/gomodcache
+#      prepareCommands:
+#        - sudo apk update
+#        - sudo apk add jq vim
       buildCommands:
         - ls -la
         - date >> cache-file.txt
         - cat cache-file.txt
         - go build -o app main.go
-        - ls -la
+#        - jq . test.json
+#        - exit 3
+      cache: 
+        - cache-file.txt
       deployFiles:
         - app
+        - test.json
+#      addToRunPrepare: 
+#        - test.json
     run:
       os: alpine
       base: alpine@latest
       ports:
         - port: 8080
           httpSupport: true
+#      prepareCommands:
+#        - sudo apk update
+#        - sudo apk add jq vim sqlite
+#        - jq . test.json
+      initCommands:
+        - jq . test.json
       start: ./app

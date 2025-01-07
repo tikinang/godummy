@@ -1,4 +1,4 @@
-module test
+module github.com/tikinang/godummy
 
 go 1.23.1
 

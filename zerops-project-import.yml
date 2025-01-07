@@ -1,0 +1,8 @@
+project:
+  name: test
+services:
+  - hostname: app
+    type: alpine@3.20
+    minContainers: 1
+    maxContainers: 1
+    buildFromGit: https://github.com/tikinang/godummy
