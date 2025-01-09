@@ -5,3 +5,9 @@ services:
     maxContainers: 1
     buildFromGit: https://github.com/tikinang/godummy
     enableSubdomainAccess: true
+  - hostname: appjs
+    type: nodejs@22
+    minContainers: 1
+    maxContainers: 1
+    buildFromGit: https://github.com/tikinang/godummy
+    enableSubdomainAccess: true

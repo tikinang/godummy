@@ -1,22 +1,22 @@
 zerops:
-  - setup: app2
-    extends: app
   - setup: app
     build:
       os: alpine
-      base: go@1
+      base:
+        - go@1
+        - nodejs@22
       prepareCommands:
         - sudo apk update
-        - sudo apk add jq vim
+        - sudo apk add jq vim sqlite
       buildCommands:
-        - ls -la
-        - date >> cache-file.txt
-        - cat cache-file.txt
+        - date >> cache-file.txt && cat cache-file.txt
         - go build -o app main.go
-#        - jq . test.json
+        - npm --version
+        - jq . test.json
 #        - exit 3
-      cache: 
-        - cache-file.txt
+#      cache:
+#        - cache-file.txt
+      cache: true
       deployFiles:
         - app
         - test.json
@@ -30,8 +30,35 @@ zerops:
           httpSupport: true
 #      prepareCommands:
 #        - sudo apk update
-#        - sudo apk add jq vim sqlite
+#        - sudo apk add jq vim
 #        - jq . test.json
 #      initCommands:
 #        - jq . test.json
       start: ./app
+
+  - setup: app2
+    extends: app
+      
+      
+  - setup: appjs
+    build:
+      os: alpine
+      base: nodejs@22
+      buildCommands:
+        - npm install
+      cache: 
+        - package-lock.json
+        - node_modules/
+      deployFiles:
+        - node_modules
+        - package.json
+        - package-lock.json
+        - index.html
+        - index.js
+    run:
+      os: alpine
+      base: nodejs@22
+      ports:
+        - port: 3000
+          httpSupport: true
+      start: npm start
