@@ -14,9 +14,9 @@ zerops:
         - npm --version
         - jq . test.json
 #        - exit 3
-#      cache:
-#        - cache-file.txt
-      cache: true
+      cache:
+        - cache-file.txt
+#      cache: true
       deployFiles:
         - app
         - test.json
